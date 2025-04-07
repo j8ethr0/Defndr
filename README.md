@@ -40,7 +40,7 @@ To learn more about Defndr and its features, visit the app’s "Learn More" sect
 
 ## Contact
 
-If you have any questions about Defndr or this repository, please contact the Defndr team at [your-email@example.com].
+If you have any questions about Defndr or this repository, please contact the Defndr team at apps@dro1d.org.
 
 ---
 
