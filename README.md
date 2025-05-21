@@ -1,7 +1,8 @@
 # Defndr
 
-###UPDATE APRIL.2025 
-- PENDING IOS ENTITLEMENT CHANGES I HAVE PULLED THE APP FROM THE APP STORE, BLAME APPLE FOR THIS DELAY ~, DEFNDR WILL BE BACK ON THE APP STORE AS SOON AS POSSIBLE AND BETTER THAN EVER!###
+###UPDATE MAY.2025 
+-DEFNDR IS NOW AVAILABLE ONCE MORE ON THE IOS APP STORE-
+###
 
 Welcome to the Defndr GitHub repository! This repository showcases the core machine learning components that power the Defndr iOS app, an SMS spam filter designed to protect users from unwanted messages while prioritizing privacy and security.
 
