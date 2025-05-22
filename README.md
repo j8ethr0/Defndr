@@ -4,7 +4,7 @@
 ---
 **Defndr is back on the iOS App Store!**
 
-We're thrilled to announce Defndr's return to the App Store! We appreciate your patience during our recent hiatus in repository updates. This pause was a necessary measure to protect Defndr's **intellectual property** and ensure the **unique value** of our core technology.
+We're thrilled to announce Defndr's return to the App Store! We appreciate your patience during our recent hiatus in repository updates. This pause was a necessary measure to protect Defndr's **intellectual property** and ensure the **unique value** of our core technology. Another reason for the pause was to delve into the technical limitations of iOS 18 for our filtering app.
 
 While we're committed to transparency about how Defndr works, the highly refined machine learning model and vocabulary represent significant development effort. To maintain the integrity and performance of the official Defndr app, these proprietary assets will not be updated here.
 
