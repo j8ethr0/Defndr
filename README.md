@@ -1,26 +1,85 @@
+![Swift](https://img.shields.io/badge/Swift-6.0-orange.svg)
+![iOS](https://img.shields.io/badge/iOS-18+-lightgrey.svg)
+![Architecture](https://img.shields.io/badge/On--Device-ML-blue.svg)
+![Privacy](https://img.shields.io/badge/Privacy-100%25%20Local-green.svg)
+![Security](https://img.shields.io/badge/Security-Hardened-black.svg)
+![Status](https://img.shields.io/badge/Status-Active%20Development-brightgreen.svg)
+
 # Defndr
 
-### UPDATE: MAY 2025 
----
-**Defndr is back on the iOS App Store!**
+**Private. Local. Intelligent SMS Spam Defense.**  
+Built by **Dro1d Labs — defndr.org**
 
-We're thrilled to announce Defndr's return to the App Store! We appreciate your patience during our recent hiatus in repository updates. This pause was a necessary measure to protect Defndr's **intellectual property** and ensure the **unique value** of our core technology. Another reason for the pause was to delve into the technical limitations of iOS 18 for our filtering app.
-
-While we're committed to transparency about how Defndr works, the highly refined machine learning model and vocabulary represent significant development effort. To maintain the integrity and performance of the official Defndr app, these proprietary assets will not be updated here.
-
-This repository will continue to serve as a resource for understanding the principles and architecture behind Defndr, demonstrating our unwavering commitment to privacy-preserving on-device processing. Thank you for your understanding and continued support in helping us maintain Defndr as a leading SMS spam filter.
+Defndr is a modern, privacy-first SMS spam filter for iOS. It processes messages **entirely on-device**, never sending data to servers, clouds, analytics platforms, or ads. Defndr is engineered for people who care about security, minimalism, and real protection—without compromising performance.
 
 ---
 
-Welcome to the Defndr GitHub repository! This repository showcases the core machine learning components that power the Defndr iOS app, an SMS spam filter designed to protect users from unwanted messages while prioritizing privacy and security.
+## 📢 App Store Availability
 
-## Purpose of This Repository
+**Defndr is currently live on the iOS App Store.**
 
-The purpose of this repository is to provide transparency into the inner workings of Defndr. By sharing the machine learning model and vocabulary used for spam detection, we aim to demonstrate:
-- **How Defndr Works**: The app uses advanced natural language processing (NLP) to classify SMS messages as spam or not spam, all processed on-device to ensure your data never leaves your phone.
-- **Open Source and Secure**: We believe in being open about our technology to build trust with our users. This repository shows that Defndr is built with security and privacy in mind.
-- **Educational Insight**: For users and developers interested in the technical details, this repository offers a glimpse into the ML technology behind Defndr.
+A previous pause in repository updates was taken to evaluate iOS 18’s new filtering framework limitations and to protect Defndr’s **proprietary model internals**. The public repo is now being updated again with new architectural modules, tooling, and documentation that reflect the ongoing evolution of the app—without exposing sensitive IP.
 
-## Important Notice
+For updates, announcements, and research:
 
-**This code and model are for informational purposes only.** The contents of this repository, including the `SpamClassifier.mlmodel` and `vocabulary.json`, are the intellectual property of the Defndr team. You are welcome to view and learn from the code, but **you are not permitted to use, copy, modify, distribute, or integrate this model or code into your own projects** without explicit permission from the Defndr team. This repository is shared to promote transparency and trust, not for reuse.
+- **Official site:** https://defndr.org  
+- **Dro1d Labs Research:** https://dro1d.org/defndr
+
+---
+
+## About This Repository
+
+This repository provides a **technical reference** for Defndr’s privacy-first on-device architecture. While it does not include the full proprietary filtering pipeline, model tuning engine, or adaptive language framework, it demonstrates:
+
+- Deterministic message sanitization and preprocessing  
+- How hybrid scoring blends ML confidence with heuristics  
+- On-device model health monitoring without telemetry  
+- High-performance design for iOS 17/18+  
+
+The code is designed to support **transparency and understanding**, while maintaining the safety of the official Defndr IP.
+
+---
+
+## 🔬 Architect & Research Modules (Dro1d Labs)
+
+These modules illustrate Defndr’s engineering approach and are written as first-class reference implementations:
+
+### `Sources/MessagePreprocessingPipeline.swift`
+Deterministic text normalization and token-pathway construction with lightweight pseudo-embeddings and on-device caching.
+
+### `Sources/HeuristicSignalScoring.swift`
+A JSON-configurable hybrid scoring engine that demonstrates how ML outputs, heuristics, and sender-level signals can be combined into a unified spam detection score.
+
+### `Sources/MLModelHealthMonitor.swift`
+A localized diagnostic layer providing:
+- Latency histograms  
+- Confidence drift detection  
+- Anomaly counters  
+- Local-only observability buffers  
+
+This module is fully offline and respects Defndr’s strict privacy principles.
+
+---
+
+## ⚠️ Important Notice
+
+The included ML model (`SpamClassifier.mlmodel`) and `vocabulary.json` are the **intellectual property of the Defndr team** and are provided for **educational and reference purposes only**.
+
+You are **not permitted** to:
+- copy  
+- modify  
+- reuse  
+- distribute  
+- integrate  
+- repackage  
+
+any model, vocabulary, or source code from this repository into your own applications or commercial products without explicit written permission.
+
+This project exists to support transparency and academic insight—not redistribution.
+
+---
+
+## 🧭 Stay Updated
+
+For updates, roadmap details, research posts, and announcements:  
+**https://defndr.org**
