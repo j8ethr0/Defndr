@@ -98,6 +98,8 @@ Defndr exists because privacy should not be a premium feature — it should be t
 
 ## Screenshots
 
+(Add your own app screenshots here)
+
 ![Defndr Clean Inbox](screenshots/inbox.png)
 ![Defndr Blocked Spam](screenshots/blocked.png)
 ![Defndr Settings](screenshots/settings.png)
