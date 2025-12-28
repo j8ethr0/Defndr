@@ -79,7 +79,40 @@ This project exists to support transparency and academic insight—not redistrib
 
 ---
 
-## 🧭 Stay Updated
+## 🔒 Why Defndr Exists
 
-For updates, roadmap details, research posts, and announcements:  
-**https://defndr.org**
+Modern SMS spam filters rely on servers, analytics pipelines, profiling, or data harvesting.  
+Defndr was built to prove something different:
+
+**That world-class SMS protection can be done entirely on-device, privately, and without selling your data.**
+
+Defndr’s mission:
+- To eliminate hidden trackers, cloud processing, and profiling.
+- To provide machine-learning filters that never leave your phone.
+- To stay lightweight, fast, and brutally minimal.
+- To build security tools normal people can trust.
+
+Defndr exists because privacy should not be a premium feature — it should be the standard.
+
+---
+
+## Screenshots
+
+![Defndr Clean Inbox](screenshots/inbox.png)
+![Defndr Blocked Spam](screenshots/blocked.png)
+![Defndr Settings](screenshots/settings.png)
+
+## Pipeline Overview
+
+flowchart LR
+	A[Raw SMS] --> B[MessagePreprocessingPipeline]
+	B --> C[Heuristics + ML Vote]
+	C --> D[HeuristicSignalScoring]
+	D --> E[Block / Allow Decision]
+	
+License
+	Educational and reference purposes only. No commercial use, modification, or redistribution permitted without explicit written permission from Dro1d Labs.
+	
+🧭 Stay Updated
+	For updates, roadmap details, research posts, and announcements:
+	https://defndr.org
