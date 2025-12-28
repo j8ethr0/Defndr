@@ -12,12 +12,12 @@ Built by **Dro1d Labs — defndr.org**
 
 ## 🥇 Defndr vs Other SMS Filters
 
-| Feature / App                  | Defndr | Truecaller | Hiya | Carrier Filters |
-|-------------------------------|:------:|:----------:|:----:|:---------------:|
-| 100% On-Device Processing     |   ✅    |     ❌      |  ❌  |        ❌        |
-| No Data Sent to Servers       |   ✅    |     ❌      |  ❌  |        ❌        |
-| No Tracking / Analytics       |   ✅    |     ❌      |  ❌  |        ❌        |
-| Ad-Free Forever               |   ✅    |     ❌      |  ❌  |        ❌        |
-| ML-Based SMS Spam Detection   |   ✅    |     ✅      |  ✅  |        ⚠️ *varies* |
-| Open Architecture Docs        |   ✅    |     ❌      |  ❌  |        ❌        |
-| Privacy-Preserving by Design  |   🟢    |     🔴      |  🔴  |        ⚠️        |
+| Feature / App                  | Defndr | Truecaller | Hiya | RoboKiller | Nomorobo | Apple Built-in | Carrier Filters |
+|-------------------------------|:------:|:----------:|:----:|:----------:|:--------:|:--------------:|:---------------:|
+| 100% On-Device Processing     |   ✅    |     ❌      |  ❌  |     ❌      |    ❌     |       ✅        |        ❌        |
+| No Data Sent to Servers       |   ✅    |     ❌      |  ❌  |     ❌      |    ❌     |       ✅        |        ❌        |
+| No Tracking / Analytics       |   ✅    |     ❌      |  ❌  |     ❌      |    ❌     |       ✅        |        ❌        |
+| Ad-Free Forever               |   ✅    |     ❌      |  ❌  |     ❌      |    ❌     |       ✅        |        ❌        |
+| ML-Based SMS Spam Detection   |   ✅    |     ✅      |  ✅  |     ✅      |    ✅     |       ❌        |        ⚠️        |
+| Open Architecture Docs        |   ✅    |     ❌      |  ❌  |     ❌      |    ❌     |       ❌        |        ❌        |
+| Privacy-Preserving by Design  |   🟢    |     🔴      |  🔴  |     🔴      |    🔴     |       🟡        |        ⚠️        |
