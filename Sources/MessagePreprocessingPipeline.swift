@@ -61,6 +61,12 @@ public struct MessagePreprocessingPipeline {
 		return digest.compactMap { String(format: "%02x", $0) }.joined()
 	}
 
+	public func extractURLs(from text: String) -> [String] {
+		guard let detector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue) else { return [] }
+		let matches = detector.matches(in: text, range: NSRange(text.startIndex..., in: text))
+		return matches.compactMap { $0.url?.absoluteString }
+	}
+	
 	/// Main entry - returns a processed message suitable for feature vector building or heuristics
 	public func process(_ rawText: String) async -> ProcessedMessage {
 		let normalized = await normalize(rawText)
@@ -69,6 +75,7 @@ public struct MessagePreprocessingPipeline {
 		let shallow = await shallowFeatures(from: rawText, tokens: tokens)
 		var fingerprint = Self.fingerprint(for: normalized)
 		var embeddingFingerprint: String? = nil
+		let shortMsgWithUrl = (Double(original.count) < 60 && urlCount >= 1) ? 1.0 : 0.0
 
 		if mode == .verbose {
 			// Placeholder embedding generation (no external network, safe deterministic pseudo-embedding)
@@ -89,6 +96,7 @@ public struct MessagePreprocessingPipeline {
 			length: normalized.count,
 			tokenCount: tokens.count,
 			shallowFeatures: shallow,
+			"shortMsgWithUrl": shortMsgWithUrl,
 			embeddingFingerprint: embeddingFingerprint
 		)
 	}
