@@ -44,6 +44,8 @@ public struct HeuristicSignalScoring {
 				signals: [
 					Signal(name: "urlPresence", weight: 0.25, description: "Non-whitelisted URL detected", active: true),
 					Signal(name: "punctuationBurst", weight: 0.10, description: "Excess punctuation detected", active: true),
+					Signal(name: "numericDensity", weight: 0.05, description: "High numeric density", active: true),
+					Signal(name: "shortMsgWithUrl", weight: 0.20, description: "Short message containing URL", active: true),
 					Signal(name: "capsBurst", weight: 0.08, description: "High ALL CAPS usage", active: true),
 					Signal(name: "currencyBurst", weight: 0.06, description: "Many currency symbols", active: true),
 					Signal(name: "mlSpamVote", weight: 0.30, description: "ML model predicted spam with high confidence", active: true)
@@ -100,6 +102,17 @@ public struct HeuristicSignalScoring {
 					rawScore += s.weight * min(1.0, cc)
 					triggered.append(s.name)
 				}
+			case "numericDensity":
+					let nd = shallowFeatures["numericDensity"] ?? 0
+					if nd > 0.3 {
+						rawScore += s.weight * nd
+						triggered.append(s.name)
+					}
+			case "shortMsgWithUrl":
+					if (shallowFeatures["shortMsgWithUrl"] ?? 0) > 0 {
+						rawScore += s.weight
+						triggered.append(s.name)
+					}
 			case "mlSpamVote":
 				if let ml = mlVote {
 					// ML vote contributes more when confident
@@ -116,7 +129,7 @@ public struct HeuristicSignalScoring {
 		let effectiveThreshold = max(0.0, min(1.0, cfg.globalThreshold + senderDelta))
 
 		// normalize rawScore (best-effort: clamp to 0..1)
-		let normalized = min(1.0, max(0.0, rawScore))
+		let normalized = 1 / (1 + exp(-12 * (rawScore - 0.5))) // steeper curve
 
 		let reason = normalized >= effectiveThreshold ? "Score >= threshold (\(String(format: "%.2f", normalized)) >= \(String(format: "%.2f", effectiveThreshold)))" : "Score below threshold (\(String(format: "%.2f", normalized)) < \(String(format: "%.2f", effectiveThreshold)))"
 
