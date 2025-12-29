@@ -16,6 +16,7 @@ public actor MLModelHealthMonitor {
 		public var confidenceMean: Double
 		public var confidenceStd: Double
 		public var anomalies: [String: Int]
+		public var latencyP95: Double
 	}
 
 	// Rolling buffers
@@ -24,7 +25,7 @@ public actor MLModelHealthMonitor {
 	private var anomalyCounters: [String: Int] = [:]
 
 	private let maxSamples = 1000
-	private let logger = Logger(subsystem: "com.nudefndr.ml", category: "health")
+	private let logger = Logger(subsystem: "com.sms-defndr.ml", category: "health")
 
 	// Configuration (exposed for tests / diagnostics)
 	public var anomalyThreshold: Double = 0.25     // e.g., sudden spike in low-confidence predictions
@@ -43,10 +44,9 @@ public actor MLModelHealthMonitor {
 		if confidence < 0.4 { incrementAnomaly("lowConfidence") }
 		if latencyMs > 200.0 { incrementAnomaly("highLatency") }
 
-		// Log sparingly
-		if Bool.random() && latencies.count % 50 == 0 {
-			logger.log("ML health snapshot — meanLatency: \(mean(latencies))ms, meanConfidence: \(mean(confidences))")
-		}
+		#if DEBUG
+		logger.log("ML health snapshot — meanLatency: \(mean(latencies))ms, meanConfidence: \(mean(confidences))")
+		#endif
 	}
 
 	public func snapshot() -> Snapshot {
@@ -55,7 +55,8 @@ public actor MLModelHealthMonitor {
 			modelLatencyMs: mean(latencies),
 			confidenceMean: mean(confidences),
 			confidenceStd: stddev(confidences),
-			anomalies: anomalyCounters
+			anomalies: anomalyCounters,
+			latencyP95: percentile(latencies, 0.95),
 		)
 	}
 
@@ -78,6 +79,13 @@ public actor MLModelHealthMonitor {
 
 	// MARK: - Private helpers
 
+	private func percentile(_ values: [Double], _ p: Double) -> Double {
+		guard !values.isEmpty else { return 0.0 }
+		let sorted = values.sorted()
+		let index = Int(Double(sorted.count) * p)
+		return sorted[min(index, sorted.count - 1)]
+	}
+	
 	private func incrementAnomaly(_ key: String) {
 		anomalyCounters[key, default: 0] += 1
 	}
