@@ -7,102 +7,53 @@
 
 # Defndr
 
-**Private. Local. Intelligent SMS Spam Defense.**  
-Built by **Dro1d Labs — defndr.org**
+**Private, local SMS spam filtering** — built by **Dro1d Labs**.
 
-Defndr is a modern, privacy-first SMS spam filter for iOS. It processes messages **entirely on-device**, never sending data to servers, clouds, analytics platforms, or ads. Defndr is engineered for people who care about security, minimalism, and real protection—without compromising performance.
-
----
-
-## 📢 App Store Availability
-
-**Defndr is currently live on the iOS App Store.**
-
-A previous pause in repository updates was taken to evaluate iOS 18’s new filtering framework limitations and to protect Defndr’s **proprietary model internals**. The public repo is now being updated again with new architectural modules, tooling, and documentation that reflect the ongoing evolution of the app—without exposing sensitive IP.
-
-For updates, announcements, and research:
-
-- **Official site:** https://defndr.org  
-- **Dro1d Labs Research:** https://dro1d.org/defndr
+Defndr processes messages **entirely on-device**, providing high-accuracy SMS spam detection without sending any data off the device.  
 
 ---
 
-## About This Repository
+## App Store
 
-This repository provides a **technical reference** for Defndr’s privacy-first on-device architecture. While it does not include the full proprietary filtering pipeline, model tuning engine, or adaptive language framework, it demonstrates:
+Defndr is live on the iOS App Store.
 
-- Deterministic message sanitization and preprocessing  
-- How hybrid scoring blends ML confidence with heuristics  
-- On-device model health monitoring without telemetry  
-- High-performance design for iOS 17/18+  
-
-The code is designed to support **transparency and understanding**, while maintaining the safety of the official Defndr IP.
+Official site: https://defndr.org  
+Research: https://dro1d.org/defndr  
 
 ---
 
-## 🔬 Architect & Research Modules (Dro1d Labs)
+## Repository Purpose
 
-These modules illustrate Defndr’s engineering approach and are written as first-class reference implementations:
+This repository provides **reference implementations** for:
+
+- Deterministic SMS preprocessing  
+- Hybrid spam scoring combining heuristics and ML  
+- On-device monitoring of model performance  
+- High-performance architecture for iOS 17/18+  
+
+It **does not include the proprietary filtering model or pipeline**.
+
+---
+
+## Modules
 
 ### `Sources/MessagePreprocessingPipeline.swift`
-Deterministic text normalization and token-pathway construction with lightweight pseudo-embeddings and on-device caching.
+Tokenization, normalization, and deterministic preprocessing of SMS text.
 
 ### `Sources/HeuristicSignalScoring.swift`
-A JSON-configurable hybrid scoring engine that demonstrates how ML outputs, heuristics, and sender-level signals can be combined into a unified spam detection score.
+Combines heuristics and ML scoring for spam classification.
 
 ### `Sources/MLModelHealthMonitor.swift`
-A localized diagnostic layer providing:
-- Latency histograms  
-- Confidence drift detection  
-- Anomaly counters  
-- Local-only observability buffers  
-
-This module is fully offline and respects Defndr’s strict privacy principles.
+Monitors model performance and drift **entirely on-device**.
 
 ---
 
-## ⚠️ Important Notice
+## License / Restrictions
 
-The included ML model (`SpamClassifier.mlmodel`) and `vocabulary.json` are the **intellectual property of the Defndr team** and are provided for **educational and reference purposes only**.
-
-You are **not permitted** to:
-- copy  
-- modify  
-- reuse  
-- distribute  
-- integrate  
-- repackage  
-
-any model, vocabulary, or source code from this repository into your own applications or commercial products without explicit written permission.
-
-This project exists to support transparency and academic insight—not redistribution.
+- All code, models, and data are **Dro1d Labs intellectual property**.  
+- No copying, redistribution, or commercial use without explicit written permission.
 
 ---
-
-## 🔒 Why Defndr Exists
-
-Modern SMS spam filters rely on servers, analytics pipelines, profiling, or data harvesting.  
-Defndr was built to prove something different:
-
-**That world-class SMS protection can be done entirely on-device, privately, and without selling your data.**
-
-Defndr’s mission:
-- To eliminate hidden trackers, cloud processing, and profiling.
-- To provide machine-learning filters that never leave your phone.
-- To stay lightweight, fast, and brutally minimal.
-- To build security tools normal people can trust.
-
-Defndr exists because privacy should not be a premium feature — it should be the standard.
-
----
-
-## Screenshots
-
-(Add your own app screenshots here)
-
-![Defndr Clean Inbox](screenshots/inbox.png)
-![Defndr Blocked Spam](screenshots/blocked.png)
-![Defndr Settings](screenshots/settings.png)
 
 ## Pipeline Overview
 
@@ -111,10 +62,7 @@ flowchart LR
 	B --> C[Heuristics + ML Vote]
 	C --> D[HeuristicSignalScoring]
 	D --> E[Block / Allow Decision]
-	
-License
-	Educational and reference purposes only. No commercial use, modification, or redistribution permitted without explicit written permission from Dro1d Labs.
-	
-🧭 Stay Updated
-	For updates, roadmap details, research posts, and announcements:
-	https://defndr.org
+
+License: Educational and reference purposes only. No commercial use, modification, or redistribution permitted without explicit written permission from Dro1d Labs.
+
+🧭 Stay Updated: https://defndr.org
